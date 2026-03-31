@@ -1,0 +1,107 @@
+@use "../variables/colors";
+
+.hamburger {
+  display: none;
+  position: relative;
+  height: 38px;
+  cursor: pointer;
+
+  @media all and (width <= 960px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &--active {
+    .hamburger__icon {
+      background-color: transparent;
+      transition: background-color 0.1s ease;
+
+      &::after {
+        animation: toCrossTop 0.4s ease forwards;
+      }
+
+      &::before {
+        animation: toCrossBottom 0.4s ease forwards;
+      }
+    }
+  }
+
+  &__icon {
+    background-color: colors.$main-text;
+    width: 32px;
+    height: 2px;
+    position: relative;
+    transition: background-color 0.1s ease 0.3s;
+
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      background-color: colors.$main-text;
+      width: 32px;
+      height: 2px;
+      position: absolute;
+      left: 0;
+    }
+
+    &::after {
+      transform: translateY(-10px);
+      animation: fromCrossTop 0.4s ease;
+    }
+
+    &::before {
+      transform: translateY(10px);
+      animation: fromCrossBottom 0.4s ease;
+    }
+  }
+}
+
+@keyframes toCrossTop {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-1px) rotate(45deg);
+  }
+}
+
+@keyframes toCrossBottom {
+  0% {
+    transform: translateY(8px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-1px) rotate(-45deg);
+  }
+}
+
+@keyframes fromCrossTop {
+  0% {
+    transform: translateY(-1px) rotate(45deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+}
+
+@keyframes fromCrossBottom {
+  0% {
+    transform: translateY(-1px) rotate(-45deg);
+  }
+  50% {
+    transform: translateY(-1px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(8px) rotate(0deg);
+  }
+}

@@ -1,0 +1,119 @@
+@use "sass:color";
+@use "../variables/colors";
+
+.differences {
+    &__inner {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-gap: 3vw;
+    }
+
+    &__left {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-block: 5vh;
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+        padding-block: 50vh;
+    }
+
+    &__title {
+        margin-bottom: 3vw;
+
+        color: color.adjust(colors.$primary-blue, $lightness: 40%);
+    
+        .text-blue {
+            color: color.adjust(colors.$primary-blue, $lightness: -15%);
+            .dark {
+                color: color.adjust(colors.$primary-blue, $lightness: -25%);
+            }
+        }
+    }
+
+    &__first {
+        font-family: "Anton";
+        display: block;
+        text-transform: uppercase;
+        font-size: 2.9vw;
+        line-height: 2.9vw;
+    }
+
+    &__last {
+        font-family: "Anton";
+        display: block;
+        text-transform: uppercase;
+        font-size: 5.5vw;
+        line-height: 5.5vw;
+    }
+
+    &__media {
+        background-color: #000;
+        height: 100%;
+        position: relative;
+    }
+
+    &__image {
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+
+        &--active {
+            opacity: 1 !important;
+            z-index: 2;
+            pointer-events: auto;
+        }
+    }
+}
+
+.difference {
+    &__number {
+        font-size: 1.5vw;
+        line-height: 1.5vw;
+        font-style: italic;
+        opacity: .8;
+        margin-bottom: 0.8vw;
+    }
+
+    &__title {
+        font-family: "Anton", sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 4vw;
+    }
+
+    &__header {
+        padding-block: 1vw;
+        border-block-end: 1px solid colors.$main-text;
+    }
+
+    &__content {
+        height: 0;
+        overflow: hidden;
+    }
+
+    &__body {
+        padding-block: 2vw;
+    }
+
+    &__text {
+        font-size: 2.2vw;
+        line-height: 2.2vw;
+    }
+} 

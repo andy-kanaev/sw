@@ -1,0 +1,40 @@
+@use "variables/colors";
+
+html {
+    font-family: "Nunito";
+    scroll-behavior: smooth;
+}
+
+// Убеждаемся, что обертки не ломают sticky элементы
+#smooth-wrapper,
+#smooth-content {
+    position: relative;
+    // Не используем transform, чтобы не ломать sticky
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    background-color: colors.$main-background;
+    color: colors.$main-text;
+}
+
+img {
+    display: block;
+}
+
+.decoration-bg {
+    background-image: url("../../assets/images/bg_pattern.svg");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 1vw;
+}
+
+#quiz-map {
+    height: 80vh;
+}

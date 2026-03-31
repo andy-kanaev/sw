@@ -1,0 +1,63 @@
+@use "../variables/colors";
+
+.button {
+  display: inline-flex;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    border-left: 0.1vw solid colors.$main-text;
+    border-top: 0.1vw solid colors.$main-text;
+    left: 0;
+    top: 0;
+  }
+
+  &::after {
+    border-right: 0.1vw solid colors.$main-text;
+    border-bottom: 0.1vw solid colors.$main-text;
+    right: 0;
+    bottom: 0;
+  }
+
+  &::after,
+  &::before {
+    height: 0.7vw;
+    width: 0.7vw;
+    display: block;
+    content: "";
+    position: absolute;
+    transition: width .4s ease-in-out, height .4s ease-in-out;
+  }
+
+  &:hover {
+    &::after,
+    &::before {
+      height: 100%;
+      width: 100%;
+      transition: width .4s ease-in-out, height .4s ease-in-out;
+    }
+  }
+
+  &__inner {
+    display: block;
+    padding: .5vw  1vw;
+    @media all and (width <= 960px) {
+      padding-block: 6px;
+      padding-inline: 12px;
+    }
+  }
+
+  &__text {
+    font-family: "Inter Tight", sans-serif;
+    font-size: 0.85vw;
+    line-height: 0.85vw;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: colors.$main-text;
+
+    @media all and (width <= 960px) {
+      font-size: 12px;
+    }
+  }
+}

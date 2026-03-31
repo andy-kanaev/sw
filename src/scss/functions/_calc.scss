@@ -1,0 +1,6 @@
+@use "sass:math";
+
+@function clamp_($min, $max, $device-width: 1920px) {
+  $vw-percentage: math.div($max, $device-width) * 100;
+  @return clamp(#{$min}, #{$vw-percentage}vw, #{$max});
+}

@@ -1,0 +1,7 @@
+@use "../variables/colors";
+.contacts {
+  &__phone {
+    color: colors.$menu-color;
+    font-size: 1vw;
+  }
+}

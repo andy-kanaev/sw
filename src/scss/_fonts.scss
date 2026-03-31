@@ -1,0 +1,39 @@
+@use "mixins/font";
+
+@include font.font-face('Anton', 'Anton/Anton', 400, normal, swap, 'otf', 'opentype');
+
+@include font.font-face('Nunito', 'Nunito/Nunito-ExtraLight', 200, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-ExtraLightItalic', 200, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-Light', 300, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-LightItalic', 300, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-Regular', 400, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-Italic', 400, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-Medium', 500, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-MediumItalic', 500, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-SemiBold', 600, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-SemiBoldItalic', 600, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-Bold', 700, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-BoldItalic', 700, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-ExtraBold', 800, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-ExtraBoldItalic', 800, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-Black', 900, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Nunito', 'Nunito/Nunito-BlackItalic', 900, italic, swap, 'ttf', 'truetype');
+
+@include font.font-face('Inter Tight', 'InterTight/InterTight-Thin', 200, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-ThinItalic', 200, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-ExtraLight', 200, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-ExtraLightItalic', 200, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-Light', 300, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-LightItalic', 300, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-Regular', 400, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-Italic', 400, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-Medium', 500, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-MediumItalic', 500, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-SemiBold', 600, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-SemiBoldItalic', 600, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-Bold', 700, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-BoldItalic', 700, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-ExtraBold', 800, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-ExtraBoldItalic', 800, italic, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-Black', 900, normal, swap, 'ttf', 'truetype');
+@include font.font-face('Inter Tight', 'InterTight/InterTight-BlackItalic', 900, italic, swap, 'ttf', 'truetype');

@@ -1,0 +1,13 @@
+@use "../variables/colors";
+@use "../functions/calc";
+
+.logo {
+  display: block;
+  height: calc.clamp_(100px, 140px);
+  width: calc.clamp_(100px, 140px);
+  &__image {
+    height: 100%;
+    width: 100%;
+    color: colors.$menu-color;
+  }
+}

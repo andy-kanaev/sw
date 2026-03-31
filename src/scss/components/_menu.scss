@@ -1,0 +1,80 @@
+@use "../variables/colors";
+
+.menu {
+  &--topbar {
+    display: block;
+    @media all and (width <= 960px) {
+      display: none;
+    }
+  }
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 1.3vw;
+    position: relative;
+  }
+
+  &__item {
+    position: static;
+
+    &--active,
+    &:hover {
+      .menu__link {
+        color: colors.$menu-active-color;
+      }
+    }
+
+    &--dropdown {
+      &:hover {
+        .menu__sub-list {
+          visibility: visible;
+        }
+
+        .menu__sub-item {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  &__link {
+    font-size: 1vw;
+    color: colors.$main-text;
+    padding-block: 0.3vw;
+    display: block;
+    cursor: pointer;
+  }
+
+  &__sub-list {
+    position: absolute;
+    background-color: colors.$menu-submenu-background;
+    top: 100%;
+    min-width: 200px;
+    overflow: hidden;
+    visibility: hidden;
+    // Начальная высота 0
+    height: 0;
+  }
+
+  &__sub-item {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__sub-link {
+    color: colors.$menu-submenu-color;
+    display: block;
+    padding-block: 0.3vw;
+    padding-inline: 0.7vw;
+    font-size: 1vw;
+    transition: background-color 0.2s;
+    .line {
+      overflow: hidden;
+    }
+    &:hover {
+      background-color: colors.$menu-submenu-active-background;
+      color: colors.$menu-submenu-active-color;
+    }
+  }
+}

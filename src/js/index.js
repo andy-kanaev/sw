@@ -16,9 +16,28 @@ import { initCurtains } from "./blocks/curtains.js";
 import { initScrollerText } from "./components/scroller-text.js";
 import { initDifferences } from "./blocks/differences.js";
 import { initMarqueeScrollDirection } from "./components/marqueeScrollDirection.js";
-import { initQuizMap } from "./components/quiz-map.js";
+import { initMap } from "./components/map.js";
+import { initFleetTabs } from "./components/fleet-tabs.js";
+import { initFleetModal } from "./components/fleet-modal.js";
+import { initJourneyRouteScroll } from "./blocks/journey-route.js";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
+
+
+function bindLocationNavToMap(mapControls) {
+    const section = document.getElementById('locations-map');
+    if (!mapControls?.openLocationById || !section) return;
+
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a[data-map-location-id]');
+        if (!link) return;
+        e.preventDefault();
+        const id = Number(link.dataset.mapLocationId);
+        if (!Number.isFinite(id)) return;
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        mapControls.openLocationById(id);
+    });
+}
 
 
 // const smoother = ScrollSmoother.create({
@@ -113,7 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         initCurtains();
         initScrollerText();
         initDifferences();
+        initFleetTabs();
+        initFleetModal();
+        initJourneyRouteScroll();
         initMarqueeScrollDirection();
-        initQuizMap();
+        void initMap().then((mapControls) => bindLocationNavToMap(mapControls));
     }, 300)
 })

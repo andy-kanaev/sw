@@ -1,0 +1,346 @@
+@use "sass:color";
+@use "../variables/colors" as c;
+
+#map {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.1);
+}
+
+#map.shifted {
+  transform: translateX(calc(min(92vw, 400px) * 0.5)) rotateY(-15deg) scale(1.6);
+}
+#info-panel.map-panel {
+  --map-panel-w: #{min(92vw, 400px)};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--map-panel-w);
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: c.$main-text;
+  background: c.$main-background;
+  transform: translateX(-100%);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#info-panel.map-panel.open {
+  transform: translateX(0);
+}
+
+.map-panel__header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(20px, 4vw, 28px) clamp(18px, 3vw, 24px) clamp(14px, 2.5vw, 18px);
+  border-bottom: 1px solid color.change(c.$main-text, $alpha: 0.28);
+}
+
+.map-panel__title {
+  margin: 0;
+  padding: 0;
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 3.8vw, 1.85rem);
+  line-height: 1.08;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: c.$main-text;
+}
+
+.map-panel__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid color.change(c.$main-text, $alpha: 0.45);
+  background: transparent;
+  color: c.$main-text;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.2s ease;
+}
+
+.map-panel__close:hover {
+  border-color: c.$menu-active-color;
+  background: color.change(c.$primary-green-dark, $alpha: 0.35);
+}
+
+.map-panel__close:active {
+  transform: scale(0.96);
+}
+
+.map-panel__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(16px, 3vw, 22px) clamp(18px, 3vw, 24px);
+}
+
+.map-panel__figure {
+  margin: 0 0 clamp(14px, 2.5vw, 18px);
+  overflow: hidden;
+  border-radius: 0;
+  border: 1px solid color.change(c.$main-text, $alpha: 0.35);
+}
+
+.map-panel__image {
+  display: block;
+  width: 100%;
+  height: clamp(160px, 22vh, 200px);
+  object-fit: cover;
+}
+
+.map-panel__section {
+  margin-bottom: clamp(16px, 2.8vw, 22px);
+
+  &.map-panel__section--last {
+    margin-bottom: 0;
+    padding-bottom: 4px;
+  }
+}
+
+.map-panel .panel-tag.map-panel__tag,
+.map-panel__tag.panel-tag {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(14px, 3.2vw, 18px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: c.$menu-active-color;
+}
+
+.map-panel__text {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: c.$main-text;
+}
+
+.map-panel__text--season {
+  font-family: "Inter Tight", sans-serif;
+  font-size: clamp(13px, 2.8vw, 15px);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: c.$main-text;
+}
+
+.map-panel .panel-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.map-panel .panel-list__item {
+  font-family: "Nunito", sans-serif;
+  font-size: 13px;
+  line-height: 1.35;
+  color: c.$main-text;
+  background: color.change(c.$primary-green-dark, $alpha: 0.22);
+  border: 1px solid color.change(c.$main-text, $alpha: 0.35);
+}
+
+.map-panel .panel-list__item--method {
+  background: color.change(c.$primary-green-dark, $alpha: 0.22);
+  border-color: color.change(c.$menu-active-color, $alpha: 0.55);
+  color: c.$main-text;
+}
+
+.map-panel .panel-list.panel-list--methods .panel-list__item.panel-list__item--method {
+  border-radius: 0;
+  padding: 6px 12px;
+}
+
+.map-panel .panel-list__item:not(.panel-list__item--method) {
+  border-radius: 0;
+  padding-block: 6px;
+  padding-inline: 12px;
+}
+
+.map-panel__footer {
+  flex-shrink: 0;
+  padding: clamp(14px, 2.8vw, 18px) clamp(18px, 3vw, 24px) clamp(20px, 4vw, 28px);
+  border-top: 1px solid color.change(c.$main-text, $alpha: 0.28);
+  background: c.$main-background;
+}
+
+.map-panel__cta.button {
+  width: 100%;
+  justify-content: center;
+
+  &::before,
+  &::after {
+    border-width: 1px;
+    border-color: color.change(c.$main-text, $alpha: 0.85);
+    width: 9px;
+    height: 9px;
+    transition:
+      width 0.38s ease-in-out,
+      height 0.38s ease-in-out;
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .button__inner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding-block: 13px;
+    padding-inline: 14px;
+    background: c.$menu-submenu-background;
+    box-sizing: border-box;
+    transition: background-color 0.25s ease;
+  }
+
+  &:hover .button__inner {
+    background: color.adjust(c.$menu-submenu-background, $lightness: 8%);
+  }
+
+  .button__text {
+    font-size: clamp(11px, 3vw, 13px);
+    line-height: 1.25;
+    color: c.$primary-blue;
+    font-family: "Inter Tight", sans-serif;
+    font-weight: 600;
+  }
+}
+
+.map-panel__scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.map-panel__scroll::-webkit-scrollbar-track {
+  background: color.change(c.$primary-green-dark, $alpha: 0.35);
+}
+
+.map-panel__scroll::-webkit-scrollbar-thumb {
+  background: color.change(c.$main-text, $alpha: 0.35);
+
+  &:hover {
+    background: color.change(c.$main-text, $alpha: 0.5);
+  }
+}
+
+/* Спутник: не задаём z-index контейнеру движка — иначе подписи и слои могут оказаться под растром. */
+.ymaps3--top-engine-container {
+  position: relative;
+  filter: grayscale(100%) contrast(1.1) brightness(1);
+}
+
+.map-color-filter {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: #3B6F7B;
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+/* Маркер */
+.custom-marker {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -100%);
+  z-index: 4;
+  height: 44px;
+  width: 36px;
+}
+
+.marker-pin {
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+}
+
+.custom-marker:hover .marker-pin {
+  transform: scale(1.2) translateY(-4px);
+}
+
+/* Тултип при наведении */
+.marker-tooltip {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(0, 10, 30, 0.85);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 194, 255, 0.3);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.marker-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 10, 30, 0.85);
+}
+
+.custom-marker:hover .marker-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+.map-wrapper {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.marker-label {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8), 0 0 6px rgba(0,0,0,0.6);
+  margin-top: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -3;
+  position: relative;
+  opacity: .6;
+}

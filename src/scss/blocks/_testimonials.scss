@@ -1,0 +1,133 @@
+@use "sass:color";
+@use "../variables/colors";
+
+$_t-muted: color.adjust(colors.$primary-blue, $lightness: 52%);
+$_t-border: color.adjust(colors.$primary-blue, $lightness: 38%);
+$_t-card: color.adjust(colors.$primary-blue, $lightness: -11%);
+
+.testimonials {
+  padding-block: clamp(2rem, 4vw, 3.75rem);
+
+  &__inner {
+    max-width: 92vw;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+    box-sizing: border-box;
+  }
+
+  &__header {
+    max-width: 56rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2.65rem);
+
+    @media all and (width <= 960px) {
+      margin-bottom: 8vw;
+    }
+  }
+
+  &__eyebrow {
+    margin: 0 0 0.5rem;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.75rem, 1.08vw, 0.92rem);
+    letter-spacing: 0.06em;
+    color: $_t-muted;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(0.74rem, 3.4vw, 0.92rem);
+    }
+  }
+
+  &__title {
+    margin: 0 0 0.65rem;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.85rem, 3.85vw, 3.05rem);
+    line-height: 1.03;
+    color: colors.$main-text;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(1.6rem, 7.2vw, 2.3rem);
+    }
+  }
+
+  &__lead {
+    margin: 0;
+    font-size: clamp(0.86rem, 1.08vw, 1rem);
+    line-height: 1.52;
+    color: colors.$main-text;
+    opacity: 0.89;
+    max-width: 40rem;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(0.88rem, 3.3vw, 1.02rem);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.1rem, 2.2vw, 1.75rem);
+
+    @media all and (width <= 1100px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media all and (width <= 680px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: clamp(1.1rem, 2vw, 1.45rem);
+  border: 1px solid $_t-border;
+  background-color: $_t-card;
+  box-sizing: border-box;
+
+  &__quote {
+    margin: 0 0 clamp(1rem, 2vw, 1.35rem);
+    font-size: clamp(0.86rem, 1.06vw, 0.96rem);
+    line-height: 1.55;
+    color: colors.$main-text;
+    flex: 1;
+  }
+
+  &__quote-mark {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: "Anton", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 2.6rem);
+    line-height: 0.82;
+    color: colors.$accent-orange;
+    opacity: 0.85;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &__footer {
+    display: grid;
+    gap: 0.2rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid $_t-border;
+  }
+
+  &__name {
+    margin: 0;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.88rem, 1.1vw, 0.97rem);
+    letter-spacing: 0.03em;
+    color: colors.$main-text;
+  }
+
+  &__meta {
+    margin: 0;
+    font-size: clamp(0.74rem, 0.94vw, 0.82rem);
+    color: $_t-muted;
+    line-height: 1.4;
+    opacity: 0.94;
+  }
+}

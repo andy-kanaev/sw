@@ -1,0 +1,311 @@
+@use "sass:color";
+@use "../variables/colors";
+
+$_fm-border: color.adjust(colors.$primary-blue, $lightness: 32%);
+$_fm-row-a: color.adjust(colors.$primary-green-dark, $lightness: 3%);
+$_fm-row-b: color.adjust(colors.$primary-green-dark, $lightness: 6%);
+
+.fleet-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2vw 3vw;
+  box-sizing: border-box;
+
+  @media all and (width <= 960px) {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    will-change: opacity, backdrop-filter;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+
+  &__container {
+    position: relative;
+    width: min(96vw, 52rem);
+    max-height: 92vh;
+    z-index: 1;
+    will-change: transform, opacity;
+
+    @media all and (width <= 960px) {
+      width: 100%;
+      max-height: none;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  &__sheet {
+    position: relative;
+    width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    will-change: transform, opacity;
+    background-color: colors.$primary-green-dark;
+    border: 1px solid color.adjust(colors.$primary-blue, $lightness: 25%);
+    box-sizing: border-box;
+
+    @media all and (width <= 960px) {
+      max-height: calc(92vh + env(safe-area-inset-bottom, 0));
+      border-inline: none;
+      border-block-end: none;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      height: 3px;
+      background-color: colors.$main-text;
+    }
+  }
+
+  &__close {
+    position: fixed;
+    top: max(24px, 2vw);
+    right: max(24px, 2vw);
+    width: 48px;
+    height: 48px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: colors.$main-text;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100003;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    will-change: transform, opacity;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media all and (width <= 768px) {
+      top: max(16px, env(safe-area-inset-top, 16px));
+      right: max(16px, env(safe-area-inset-right, 16px));
+      width: 44px;
+      height: 44px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &__figure {
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    max-height: 38vh;
+    overflow: hidden;
+    border-block-end: 1px solid $_fm-border;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__content {
+    padding: 2.2vw 2.6vw 2.8vw;
+
+    @media all and (width <= 960px) {
+      padding: 5vw 5vw calc(5vw + env(safe-area-inset-bottom, 0));
+    }
+  }
+
+  &__title {
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 3.2vw;
+    line-height: 1.05;
+    margin: 0 0 1.6vw;
+    color: colors.$main-text;
+
+    @media all and (min-width: 1200px) {
+      font-size: 2.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media all and (width <= 960px) {
+      font-size: clamp(1.5rem, 6.4vw, 2.2rem);
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__body {
+    font-size: 2.2vw;
+    line-height: 2.8vw;
+    color: colors.$main-text;
+
+    @media all and (min-width: 1200px) {
+      font-size: 1.05rem;
+      line-height: 1.62;
+    }
+
+    @media all and (width <= 960px) {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .fleet-model__text {
+      margin: 0 0 1.4vw;
+      opacity: 0.95;
+
+      @media all and (width <= 960px) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .fleet-model__meta {
+      margin-bottom: 1.6vw;
+      padding: 1.1rem 1.15rem;
+      border: 1px solid $_fm-border;
+      background-color: $_fm-row-a;
+
+      @media all and (width <= 960px) {
+        margin-bottom: 1.25rem;
+        padding: 0.9rem 1rem;
+      }
+    }
+
+    .fleet-model__label {
+      font-family: "Anton", sans-serif;
+      text-transform: uppercase;
+      font-size: 1.45vw;
+      letter-spacing: 0.05em;
+      margin: 0 0 0.35vw;
+      color: colors.$main-text;
+
+      @media all and (width <= 960px) {
+        font-size: 0.7rem;
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    .fleet-model__value {
+      margin: 0;
+      font-size: 2vw;
+      line-height: 2.6vw;
+
+      @media all and (width <= 960px) {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+    }
+
+    .fleet-model__link {
+      color: colors.$main-text;
+      text-decoration: none;
+      border-bottom: 1px solid colors.$main-text;
+      transition: color 0.2s ease, border-color 0.2s ease;
+
+      &:hover,
+      &:focus-visible {
+        color: color.adjust(colors.$main-text, $lightness: 8%);
+        border-bottom-color: color.adjust(colors.$main-text, $lightness: 15%);
+        outline: none;
+      }
+    }
+
+    .fleet-specs {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 1.85vw;
+      line-height: 2.3vw;
+      border: 1px solid $_fm-border;
+      overflow: hidden;
+
+      @media all and (width <= 960px) {
+        font-size: 0.85rem;
+        line-height: 1.45;
+      }
+
+      caption {
+        caption-side: top;
+        text-align: left;
+        padding: 0 0 0.65rem;
+        margin: 0;
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        font-size: 1.45vw;
+        letter-spacing: 0.08em;
+        color: colors.$main-text;
+
+        @media all and (width <= 960px) {
+          font-size: 0.72rem;
+          padding-bottom: 0.5rem;
+        }
+      }
+
+      tbody tr {
+        &:nth-child(odd) td {
+          background-color: $_fm-row-a;
+        }
+
+        &:nth-child(even) td {
+          background-color: $_fm-row-b;
+        }
+      }
+
+      th,
+      td {
+        padding: 0.65vw 0.85vw;
+        border: none;
+        border-bottom: 1px solid $_fm-border;
+        vertical-align: top;
+
+        @media all and (width <= 960px) {
+          padding: 0.55rem 0.65rem;
+        }
+      }
+
+      tr:last-child th,
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      th {
+        font-weight: 600;
+        text-align: left;
+        width: 38%;
+        color: colors.$main-text;
+        background-color: $_fm-row-a;
+        border-right: 1px solid $_fm-border;
+        font-size: 0.92em;
+        letter-spacing: 0.02em;
+      }
+
+      td {
+        color: colors.$main-text;
+        opacity: 0.96;
+      }
+    }
+  }
+}

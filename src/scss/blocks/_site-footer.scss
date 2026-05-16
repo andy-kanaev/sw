@@ -1,0 +1,152 @@
+@use "sass:color";
+@use "../variables/colors";
+
+$_sf-soft: color.adjust(colors.$primary-blue, $lightness: 52%);
+$_sf-muted: rgba(237 246 246 / 0.65);
+
+.site-footer {
+  margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
+  padding-block: clamp(2rem, 4.5vw, 3rem) clamp(1.85rem, 3.5vw, 2.5rem);
+  border-top: 1px solid color-mix(in srgb, colors.$main-text 16%, transparent);
+  background: color.adjust(colors.$primary-blue, $lightness: -13%);
+
+  &__inner {
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.65rem);
+    max-width: 120rem;
+    box-sizing: border-box;
+    display: grid;
+    gap: clamp(1.85rem, 4vw, 2.85rem);
+
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+
+    @media all and (width <= 980px) {
+      grid-template-columns: 1fr 1fr;
+
+      > :first-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media all and (width <= 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    padding-right: clamp(0rem, 2vw, 1.5rem);
+
+    .logo {
+      margin: 0 0 clamp(0.65rem, 1.4vw, 0.92rem);
+      height: clamp(108px, 10.5vw, 148px);
+      width: clamp(108px, 10.5vw, 148px);
+
+      @media all and (width <= 960px) {
+        height: clamp(100px, 22vw, 132px);
+        width: clamp(100px, 22vw, 132px);
+      }
+    }
+  }
+
+  .visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  &__tagline {
+    margin: 0;
+    max-width: 28rem;
+    font-size: clamp(0.82rem, 1.06vw, 0.93rem);
+    line-height: 1.53;
+    color: $_sf-muted;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(0.83rem, 3.2vw, 0.95rem);
+    }
+  }
+
+  &__nav-title,
+  &__contacts-title {
+    margin: 0 0 clamp(0.65rem, 1.4vw, 0.92rem);
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.78rem, 1vw, 0.86rem);
+    letter-spacing: 0.06em;
+    color: $_sf-soft;
+    opacity: 0.94;
+  }
+
+  &__links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+
+    a {
+      color: colors.$main-text;
+      text-decoration: none;
+      font-size: clamp(0.82rem, 1.02vw, 0.9rem);
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+  }
+
+  &__contacts {
+    p {
+      margin: 0 0 0.45rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: colors.$main-text;
+      text-decoration: none;
+      font-size: clamp(0.84rem, 1.05vw, 0.92rem);
+
+      &:hover {
+        opacity: 0.88;
+      }
+    }
+
+    &-label {
+      display: block;
+      font-size: clamp(0.72rem, 0.94vw, 0.82rem);
+      color: $_sf-muted;
+      margin-bottom: 0.08rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__legal {
+    margin-inline: auto;
+    margin-top: clamp(1rem, 2.4vw, 1.85rem);
+    padding-top: clamp(1rem, 2vw, 1.35rem);
+    padding-inline: clamp(1rem, 4vw, 2.65rem);
+    border-top: 1px solid color-mix(in srgb, colors.$main-text 10%, transparent);
+    font-size: clamp(0.7rem, 0.92vw, 0.79rem);
+    line-height: 1.54;
+    color: $_sf-muted;
+    opacity: 0.95;
+    text-align: center;
+    max-width: 72rem;
+
+    @media all and (width <= 960px) {
+      text-align: left;
+      padding-inline: clamp(1rem, 5vw, 2.65rem);
+    }
+  }
+}

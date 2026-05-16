@@ -1,0 +1,283 @@
+@use "sass:color";
+@use "../variables/colors";
+
+$fleet-border: color.adjust(colors.$primary-blue, $lightness: 38%);
+$fleet-muted: color.adjust(colors.$primary-blue, $lightness: 52%);
+
+.fleet {
+  &__inner {
+    padding-block: 2vw 5vw;
+  }
+
+  &__header {
+    max-width: 75vw;
+    margin-bottom: 2.5vw;
+
+    @media all and (width <= 960px) {
+      max-width: none;
+      margin-bottom: 5vw;
+    }
+  }
+
+  &__title {
+    margin: 0 0 1.2vw;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 5.5vw;
+    line-height: 5.5vw;
+    color: $fleet-muted;
+
+    &-mark {
+      color: colors.$main-text;
+    }
+
+    @media all and (width <= 960px) {
+      font-size: 9.2vw;
+      line-height: 9.2vw;
+    }
+  }
+
+  &__lead {
+    margin: 0;
+    font-size: 2.2vw;
+    line-height: 2.8vw;
+    color: colors.$main-text;
+    opacity: 0.94;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+      line-height: 1.55;
+    }
+  }
+
+  &__tablist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5vw 1.2vw;
+    margin: 0 0 2vw;
+    padding: 0;
+    border-bottom: 1px solid $fleet-border;
+
+    @media all and (width <= 960px) {
+      gap: 1vw 2vw;
+      margin-bottom: 5vw;
+    }
+  }
+
+  &__tab {
+    position: relative;
+    margin: 0;
+    padding: 0.8vw 1.2vw 1.1vw;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 2vw;
+    letter-spacing: 0.02em;
+    color: color.adjust(colors.$primary-blue, $lightness: 48%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    @media all and (width <= 960px) {
+      padding: 10px 14px 14px;
+      font-size: clamp(0.82rem, 3.4vw, 1.05rem);
+    }
+
+    &:hover {
+      color: colors.$main-text;
+    }
+
+    &:focus-visible {
+      color: colors.$main-text;
+      outline: 2px solid colors.$main-text;
+      outline-offset: 4px;
+    }
+
+    &[aria-selected="true"] {
+      color: colors.$main-text;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 3px;
+        background-color: colors.$main-text;
+      }
+    }
+  }
+
+  &__panels {
+    display: block;
+  }
+
+  /* Иначе display:grid у .fleet__panel может перебить [hidden] при равной специфичности */
+  &__panel[hidden] {
+    display: none !important;
+  }
+
+  &__panel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.1vw;
+    align-items: stretch;
+
+    @media all and (width <= 1100px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4vw;
+    }
+
+    @media all and (width <= 640px) {
+      grid-template-columns: 1fr;
+      gap: 4vw;
+    }
+  }
+}
+
+.fleet-model {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid $fleet-border;
+  background-color: color.adjust(colors.$primary-blue, $lightness: -10%);
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
+
+    &:hover .fleet-model__cta,
+    &:focus-visible .fleet-model__cta {
+      color: color.adjust(colors.$main-text, $lightness: 6%);
+      border-bottom-color: color.change(colors.$main-text, $alpha: 0.55);
+    }
+
+    &:hover .fleet-model__image,
+    &:focus-visible .fleet-model__image {
+      opacity: 0.94;
+    }
+
+    &:focus-visible {
+      outline: 2px solid colors.$main-text;
+      outline-offset: 1px;
+    }
+
+    &--open {
+      .fleet-model__media {
+        opacity: 0.88;
+      }
+    }
+  }
+
+  &__media {
+    margin: 0;
+    aspect-ratio: 5 / 3;
+    max-height: 11rem;
+    overflow: hidden;
+    border-block-end: 1px solid $fleet-border;
+    background-color: color.adjust(colors.$primary-blue, $lightness: -14%);
+
+    @media all and (width <= 640px) {
+      max-height: 14rem;
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: opacity 0.25s ease;
+  }
+
+  &__peek {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    flex: 1;
+    justify-content: flex-start;
+    padding: 0.75rem 0.85rem 0.9rem;
+
+    @media all and (width <= 960px) {
+      padding: 0.8rem 0.9rem 1rem;
+      gap: 0.5rem;
+    }
+  }
+
+  &__card-title {
+    display: block;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.78rem, 1.35vw, 1.05rem);
+    line-height: 1.12;
+    letter-spacing: 0.02em;
+    color: colors.$main-text;
+
+    @media all and (width <= 640px) {
+      font-size: clamp(0.88rem, 3.8vw, 1.15rem);
+    }
+  }
+
+  &__teaser {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: clamp(0.68rem, 1.15vw, 0.84rem);
+    line-height: 1.4;
+    color: colors.$main-text;
+    opacity: 0.88;
+    flex: 1;
+
+    @media all and (width <= 640px) {
+      font-size: clamp(0.78rem, 2.8vw, 0.9rem);
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  &__cta {
+    align-self: flex-start;
+    margin-top: 0.15rem;
+    padding: 0;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.62rem, 1vw, 0.72rem);
+    letter-spacing: 0.06em;
+    color: colors.$main-text;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+
+    @media all and (width <= 640px) {
+      font-size: clamp(0.68rem, 2.6vw, 0.78rem);
+      margin-top: 0.35rem;
+    }
+  }
+
+  &__cta-arrow {
+    display: inline-block;
+    margin-inline-start: 0.35em;
+    transition: transform 0.25s ease;
+
+    .fleet-model__card:hover &,
+    .fleet-model__card:focus-visible & {
+      transform: translateX(3px);
+    }
+  }
+
+  &__detail {
+    display: none;
+  }
+}

@@ -1,0 +1,180 @@
+@use "sass:color";
+@use "../variables/colors";
+
+$_am-border: color.adjust(colors.$primary-blue, $lightness: 38%);
+$_am-muted: color.adjust(colors.$primary-blue, $lightness: 52%);
+$_am-panel-bg: color.adjust(colors.$primary-blue, $lightness: -10%);
+
+.angling-methods {
+  &__inner {
+    padding-block: 2vw 4vw;
+  }
+
+  &__header {
+    max-width: 85vw;
+    margin-bottom: 2.8vw;
+
+    @media all and (width <= 960px) {
+      max-width: none;
+      margin-bottom: 8vw;
+    }
+  }
+
+  &__eyebrow {
+    margin: 0 0 0.6vw;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.85vw, 3vw, 2.4rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: $_am-muted;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(1rem, 4.2vw, 1.35rem);
+      margin-bottom: 10px;
+    }
+  }
+
+  &__title {
+    margin: 0 0 1.2vw;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 5.5vw;
+    line-height: 5.2vw;
+    color: colors.$main-text;
+
+    @media all and (width <= 960px) {
+      font-size: 9vw;
+      line-height: 9vw;
+      margin-bottom: 3vw;
+    }
+  }
+
+  &__lead {
+    margin: 0;
+    max-width: 62rem;
+    font-size: 2.2vw;
+    line-height: 2.85vw;
+    color: colors.$main-text;
+    opacity: 0.92;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(0.95rem, 3.6vw, 1.08rem);
+      line-height: 1.55;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25vw;
+    align-items: stretch;
+
+    @media all and (width <= 900px) {
+      grid-template-columns: 1fr;
+      gap: 6vw;
+    }
+  }
+}
+
+.angling-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid $_am-border;
+  background-color: $_am-panel-bg;
+
+  &__visual {
+    margin: 0;
+    aspect-ratio: 16 / 10;
+    max-height: min(28vh, 280px);
+    overflow: hidden;
+    border-block-end: 1px solid $_am-border;
+    background-color: color.adjust(colors.$primary-blue, $lightness: -14%);
+
+    @media all and (width <= 900px) {
+      max-height: 240px;
+      aspect-ratio: 16 / 9;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: clamp(1rem, 1.65vw, 1.5rem) clamp(1.1rem, 1.85vw, 1.75rem) clamp(1.2rem, 2vw, 1.85rem);
+    gap: clamp(0.65rem, 1.1vw, 0.95rem);
+  }
+
+  &__index {
+    margin: 0;
+    font-family: "Anton", sans-serif;
+    font-size: clamp(0.75rem, 1.25vw, 0.9rem);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: color.adjust(colors.$primary-blue, $lightness: 48%);
+  }
+
+  &__name {
+    margin: 0;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.35rem, 2.8vw, 2rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: colors.$main-text;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: clamp(0.88rem, 1.55vw, 1.02rem);
+    line-height: 1.55;
+    color: colors.$main-text;
+    opacity: 0.93;
+  }
+
+  &__subheading {
+    margin: 0.15rem 0 0;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.65rem, 1.1vw, 0.78rem);
+    letter-spacing: 0.08em;
+    color: color.adjust(colors.$primary-blue, $lightness: 50%);
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: clamp(0.82rem, 1.4vw, 0.96rem);
+    line-height: 1.5;
+    color: colors.$main-text;
+    opacity: 0.9;
+
+    li {
+      margin-bottom: 0.35rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__footnote {
+    margin: auto 0 0;
+    padding-block-start: clamp(0.5rem, 0.9vw, 0.65rem);
+    margin-block-start: clamp(0.35rem, 0.6vw, 0.5rem);
+    border-block-start: 1px solid $_am-border;
+    font-size: clamp(0.76rem, 1.2vw, 0.88rem);
+    line-height: 1.45;
+    color: colors.$main-text;
+    opacity: 0.78;
+  }
+}

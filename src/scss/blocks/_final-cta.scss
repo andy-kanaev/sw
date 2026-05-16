@@ -1,0 +1,84 @@
+@use "../variables/colors";
+@use "sass:color";
+
+
+.final-cta {
+  padding-block: clamp(2.65rem, 6vw, 4.85rem);
+
+  &__inner {
+    margin-inline: auto;
+    padding: clamp(1.85rem, 4vw, 3rem) clamp(1.35rem, 4vw, 2.85rem);
+    max-width: min(920px, 92vw);
+    background-color: color.adjust(colors.$primary-blue, $lightness: -13%);
+    box-sizing: border-box;
+    text-align: center;
+    outline: 1px solid color-mix(in srgb, colors.$main-text 22%, transparent);
+    outline-offset: -1px;
+  }
+
+  &__title {
+    margin: 0 0 clamp(0.75rem, 2vw, 1.05rem);
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.72rem, 4.2vw, 2.75rem);
+    line-height: 1.04;
+    color: colors.$main-text;
+    letter-spacing: 0.01em;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(1.55rem, 7vw, 2.15rem);
+    }
+  }
+
+  &__lead {
+    margin: 0 auto clamp(1.35rem, 3.2vw, 1.85rem);
+    max-width: 40rem;
+    font-size: clamp(0.9rem, 1.35vw, 1.06rem);
+    line-height: 1.53;
+    color: colors.$main-text;
+    opacity: 0.9;
+
+    @media all and (width <= 960px) {
+      font-size: clamp(0.92rem, 3.35vw, 1.03rem);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.85rem, 2.4vw, 1.35rem);
+
+    .button {
+
+      &::after,
+      &::before {
+        border-color: colors.$main-text;
+      }
+    }
+
+    .button:hover {
+
+      &::after,
+      &::before {
+        border-color: colors.$main-text;
+      }
+    }
+
+    .button__text {
+      color: colors.$main-text;
+    }
+  }
+
+  &__hint {
+    margin: clamp(1rem, 2.4vw, 1.35rem) 0 0;
+    font-size: clamp(0.78rem, 1vw, 0.87rem);
+    color: colors.$main-text;
+    opacity: 0.68;
+    letter-spacing: 0.03em;
+    line-height: 1.52;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+}

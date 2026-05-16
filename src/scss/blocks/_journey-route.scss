@@ -1,0 +1,270 @@
+@use "sass:color";
+@use "../variables/colors";
+
+$_jr-border: color.adjust(colors.$primary-blue, $lightness: 38%);
+$_jr-soft: color.adjust(colors.$primary-blue, $lightness: 52%);
+$_jr-fill: color.adjust(colors.$primary-blue, $lightness: -11%);
+
+.journey-route {
+  position: relative;
+  padding-block: 0 clamp(1.25rem, 2.8vw, 2.25rem);
+
+  &.section {
+    margin-block: clamp(1rem, 2.2vw, 2rem);
+  }
+
+  &__pin {
+    position: relative;
+    /* pin даёт браузеру слой без лишних transform на родителях секции */
+  }
+
+  &__head {
+    padding-block: clamp(0.65rem, 1.4vw, 1.1rem) clamp(0.5rem, 1.2vw, 0.95rem);
+
+    @media all and (width <= 768px) {
+      padding-block: 4vw 3vw;
+    }
+  }
+
+  &__eyebrow {
+    margin: 0 0 0.35rem;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.72rem, 1.05vw, 0.92rem);
+    line-height: 1.08;
+    letter-spacing: 0.04em;
+    color: $_jr-soft;
+
+    @media all and (width <= 768px) {
+      font-size: clamp(0.72rem, 2.8vw, 0.88rem);
+    }
+  }
+
+  &__title {
+    margin: 0 0 0.5rem;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(1.85rem, 3.35vw, 2.85rem);
+    line-height: 1.03;
+    color: colors.$main-text;
+
+    @media all and (width <= 768px) {
+      font-size: clamp(1.55rem, 6.2vw, 2.1rem);
+      line-height: 1.06;
+      margin-bottom: 0.6rem;
+    }
+  }
+
+  &__lead {
+    margin: 0;
+    max-width: 42rem;
+    font-size: clamp(0.8rem, 1.08vw, 0.97rem);
+    line-height: 1.47;
+    color: colors.$main-text;
+    opacity: 0.88;
+
+    @media all and (width <= 768px) {
+      font-size: clamp(0.86rem, 3.2vw, 0.98rem);
+      line-height: 1.5;
+      max-width: none;
+    }
+  }
+
+  &__viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-block: clamp(0.95rem, 2vw, 1.65rem) clamp(1rem, 2.2vw, 1.75rem);
+    padding-inline: clamp(1rem, 3vw, 2.5vw);
+    box-sizing: border-box;
+  }
+
+  &__track {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: clamp(3rem, 9vw, 7rem);
+    width: max-content;
+    min-height: clamp(280px, 42vw, 460px);
+    padding-top: clamp(0.5rem, 1.2vw, 0.95rem);
+    padding-bottom: clamp(70px, 9.5vw, 108px);
+
+    @media all and (width <= 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: clamp(1.25rem, 4vw, 2rem);
+      width: 100%;
+      max-width: 100%;
+      padding-bottom: 0;
+      padding-inline: 2vw;
+    }
+  }
+
+  &__path {
+    position: absolute;
+    left: -4%;
+    width: 108%;
+    top: clamp(36px, 4.75vw, 56px);
+    bottom: clamp(44px, 6vw, 72px);
+    height: auto;
+    color: colors.$main-text;
+    opacity: 0.44;
+    pointer-events: none;
+    z-index: 0;
+
+    @media all and (width <= 768px) {
+      display: none;
+    }
+  }
+
+  &__stops {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: clamp(3rem, 9vw, 7rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media all and (width <= 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      border-left: 2px dashed color.change(colors.$main-text, $alpha: 0.45);
+      padding-left: clamp(1rem, 3vw, 1.35rem);
+    }
+  }
+
+  &__stop {
+    flex: 0 0 clamp(168px, 17vw, 228px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media all and (min-width: 769px) {
+      &:nth-child(2) {
+        padding-top: clamp(1.35rem, 3.35vw, 2.65rem);
+      }
+
+      &:nth-child(3) {
+        padding-top: clamp(3.1rem, 7.15vw, 5.55rem);
+      }
+
+      &:nth-child(4) {
+        padding-top: clamp(4.45rem, 10.2vw, 7.75rem);
+      }
+
+      &:nth-child(5) {
+        padding-top: clamp(6.05rem, 13.85vw, 10.65rem);
+      }
+
+      &:nth-child(6) {
+        padding-top: clamp(7.65rem, 17.05vw, 13.65rem);
+      }
+    }
+
+    @media all and (width <= 768px) {
+      flex: none;
+      width: 100%;
+      align-items: stretch;
+      padding-bottom: clamp(1.25rem, 4vw, 1.85rem);
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    &-inner {
+      position: relative;
+      width: 100%;
+      padding: clamp(0.72rem, 1.15vw, 0.92rem);
+      border: 1px solid $_jr-border;
+      background-color: $_jr-fill;
+      box-sizing: border-box;
+
+      @media all and (width <= 768px) {
+        padding-left: clamp(2.85rem, 9vw, 3.35rem);
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: clamp(1rem, 3vw, 1.2rem);
+          left: clamp(0.85rem, 2.5vw, 1.05rem);
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+          border: 2px solid colors.$main-text;
+          background-color: colors.$primary-green-dark;
+          opacity: 0.9;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+
+  &__marker {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 31px;
+    height: 31px;
+    margin: 0 0 clamp(7px, 1vw, 11px);
+    border-radius: 50%;
+    border: 2px solid colors.$main-text;
+    background-color: colors.$primary-green-dark;
+    color: colors.$main-text;
+    font-family: "Anton", sans-serif;
+    font-size: 0.8rem;
+    line-height: 1;
+    flex-shrink: 0;
+
+    @media all and (width <= 768px) {
+      display: none;
+    }
+  }
+
+  &__step-title {
+    margin: 0 0 clamp(0.28rem, 0.55vw, 0.42rem);
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(0.82rem, 1.05vw, 0.97rem);
+    line-height: 1.08;
+    color: colors.$main-text;
+
+    @media all and (width <= 768px) {
+      font-size: clamp(0.9rem, 3.35vw, 1.06rem);
+    }
+  }
+
+  &__step-text {
+    margin: 0;
+    font-size: clamp(0.72rem, 0.92vw, 0.82rem);
+    line-height: 1.45;
+    color: colors.$main-text;
+    opacity: 0.88;
+
+    @media all and (width <= 768px) {
+      font-size: clamp(0.86rem, 3.5vw, 0.96rem);
+    }
+  }
+
+  &__mobile-step {
+    display: none;
+
+    @media all and (width <= 768px) {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-family: "Anton", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: $_jr-soft;
+    }
+  }
+}

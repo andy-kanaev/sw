@@ -1,0 +1,23 @@
+@use "sass:color";
+@use "../variables/colors";
+
+.locations {
+  &__inner {
+
+  }
+
+  &__title {
+    margin-bottom: 3vw;
+    margin-top: 6vw;
+    font-family: "Anton", sans-serif;
+    display: block;
+    text-transform: uppercase;
+    font-size: 5.5vw;
+    line-height: 5.5vw;
+
+    color: color.adjust(colors.$primary-blue, $lightness: 40%);
+
+
+  }
+
+}

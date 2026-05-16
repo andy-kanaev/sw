@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../variables/colors";
 
 .gallery {
@@ -23,19 +24,60 @@
         height: 70vh;
         margin-inline: 20px;
         overflow: hidden;
+
+        > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
     }
 
     &__info {
         width: 100%;
         height: 100%;
         background-color: colors.$primary-green;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1rem, 2.5vw, 2rem);
+        box-sizing: border-box;
     }
 
-    &__image {
-        height: 100%;
+    &__content {
         width: 100%;
-        object-fit: cover;
-        object-position: center;
-        display: block;
+        max-width: 42rem;
+    }
+
+    &__title {
+        margin: 0;
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+        line-height: 0.96;
+        color: colors.$primary-green-dark;
+    }
+
+    &--adventures {
+        .gallery__info {
+            background-color: color.adjust(colors.$primary-green, $lightness: -14%);
+            box-shadow: inset 0 0 0 1px rgba(0 32 43 / 0.18);
+        }
+
+        .gallery__title {
+            color: colors.$main-text;
+
+            &-accent {
+                color: colors.$accent-orange;
+                display: inline-block;
+                margin-top: 0.2em;
+            }
+        }
+
+        .gallery__item > img {
+            filter: saturate(1.06) contrast(1.02);
+        }
     }
 }
